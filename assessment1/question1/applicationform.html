@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    label {
+        font-weight: 550;
+    }
+
+    #optional {
+        font-weight: 200;
+    }
+
+    .container {
+        background-color: bisque;
+        padding: 20px;
+        width: 370px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    body {
+        background-color: aliceblue;
+    }
+
+    .star {
+        color: red;
+    }
+</style>
+
+<body>
+    <center>
+        <h3><u>Application Form</u></h3>
+    </center>
+    <div class="container">
+        <form action="" name="appForm" onsubmit="return formValidation()">
+            <div class="form-group">
+                <label for="fullname">Full Name<span class="star">*</span></label>
+                <input type="text" id="fullname" name="fullname" class="form-control">
+                <span id="fullnameErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="emailaddress">Email Address<span class="star">*</span></label>
+                <input type="email" id="emailaddress" name="emailaddress" class="form-control">
+                <span id="emailaddressErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="mobileno">Mobile Number<span class="star">*</span></label>
+                <input type="text" id="mobileno" name="mobileno" class="form-control">
+                <span id="mobilenoErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="country">Country<span class="star">*</span></label>
+                <select name="country" id="country" class="form-control">
+                    <option value="Select">Select</option>
+                    <option value="India">India</option>
+                    <option value="America">America</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="England">England</option>
+                </select>
+                <span id="countryErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div>
+                <label for="gender">Gender<span class="star">*</span></label>
+                <div class="form-group form-control">
+                    <input type="radio" id="gender" name="gender" value="Male"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" id="gender" name="gender" value="Female"> Female &nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <span id="genderErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div>
+                <label for="hobbies">Hobbies <span id="optional">(Optional)</span></label>
+                <div class="form-group form-control">
+                    <input type="checkbox" id="hobbies" name="hobbies" value="Sports"> Sports
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" id="hobbies" name="hobbies" value="Movies"> Movies
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" id="hobbies" name="hobbies" value="Music"> Music
+                </div>
+                <span id="hobbiesErr" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success form-control">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function formValidation() {
+            event.preventDefault();
+            var fullname = document.getElementById('fullname').value;
+            var emailaddress = document.getElementById('emailaddress').value;
+            var mobileno = document.getElementById('mobileno').value;
+            var country = document.getElementById('country').value;
+            var gender = document.appForm.gender;
+            var hobbies = document.getElementById('hobbies').value;
+            // if (fullname.length == 0 && emailaddress.length == 0 && mobileno.length == 0 && country == "Select" && gender.value.length == 0) {
+            //     document.getElementById("fullnameErr").innerHTML = "Please enter your name";
+            //     document.getElementById("emailaddressErr").innerHTML = "Please enter your email address";
+            //     document.getElementById("mobilenoErr").innerHTML = "Please enter your mobile number";
+            //     document.getElementById("countryErr").innerHTML = "Please select your country";
+            //     document.getElementById("genderErr").innerHTML = "Please select your gender";
+            //     return false;
+            // }
+            if (fullname.length == 0 || fullname == "") {
+                document.getElementById('fullnameErr').innerHTML = "Please enter your name";
+                fullname.focus();
+                return false;
+            }
+            else {
+                document.getElementById('fullnameErr').innerHTML = "";
+            }
+            if (emailaddress.length == 0 || emailaddress == "") {
+                document.getElementById('emailaddressErr').innerHTML = "Please enter your email address";
+                emailaddress.focus();
+                return false;
+            }
+            else {
+                document.getElementById('emailaddressErr').innerHTML = "";
+            }
+            if (mobileno.length == 0 || mobileno == "") {
+                document.getElementById('mobilenoErr').innerHTML = "Please enter your mobile number";
+                mobileno.focus();
+                return false;
+            }
+            else {
+                document.getElementById('mobilenoErr').innerHTML = "";
+            }
+            if (country == "Select") {
+                document.getElementById('countryErr').innerHTML = "Please select your country";
+                country.focus();
+                return false;
+            }
+            else {
+                document.getElementById('countryErr').innerHTML = "";
+            }
+            if (gender.value.length == 0) {
+                document.getElementById("genderErr").innerHTML = "Please select your gender";
+                gender.focus();
+                return false;
+            }
+            else {
+                document.getElementById("genderErr").innerHTML = "";
+            }
+            if (fullname.length > 0 && emailaddress.length > 0 && mobileno.length > 0 && !(country.select == "Select") && gender.value.length > 0) {
+                window.location.href = "message.html";
+                document.appForm.reset();
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
